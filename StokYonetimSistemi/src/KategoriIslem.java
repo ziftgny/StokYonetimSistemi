@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class KategoriIslem extends CRUDIslemler{
+public class KategoriIslem extends CRUDIslemler<Kategori>{
 
-    private ArrayList<Kategori> kategoriListesi;
-
-    public KategoriIslem(ArrayList<Kategori> kategoriListesi) {
-        this.kategoriListesi = kategoriListesi;
+    KategoriIslem(ArrayList<Kategori> kategorilistesi){
+        liste = kategorilistesi;
     }
+
     Scanner soru = new Scanner(System.in);
     int input;
 
@@ -50,7 +50,7 @@ public class KategoriIslem extends CRUDIslemler{
     public void oku() {
         System.out.println("Kategoriler:");
 
-        for (Kategori kategori : kategoriListesi) {
+        for (Kategori kategori : liste) {
             System.out.println("ID: " + kategori.getId() + ", Ad: " + kategori.getAd());
         }
         System.out.println();
