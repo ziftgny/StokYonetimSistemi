@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class CRUDIslemler<T> {
-    ArrayList<T> liste;
-
-    public CRUDIslemler(ArrayList<T> liste) {
-        this.liste = liste;
-    }
+public abstract class CRUDIslemler {
 
     public abstract void oku();
     abstract public void olustur();

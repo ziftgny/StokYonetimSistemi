@@ -23,6 +23,8 @@ public class Program {
             input=scanner.nextInt();
                 switch (input){
                     case 1:
+                        KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
+                        kategoriIslem.basla();
                         break;
                     case 2:
                         break;

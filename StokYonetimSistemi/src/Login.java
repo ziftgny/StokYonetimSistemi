@@ -7,7 +7,8 @@ public class Login {
      public void setup(){
          Collections.addAll(kullaniciArrayList,
                  new Kullanici("gulsekykc","20"),
-                 new Kullanici("ziftgny","zift2002")
+                 new Kullanici("ziftgny","zift2002"),
+                 new Kullanici("hilmigndogdu","gs1905")
                  );
      }
     public void basla(){

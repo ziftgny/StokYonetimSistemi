@@ -5,7 +5,7 @@ public class Kategori {
     //objeye benzersiz id değeri verecektir.
     private static int idCounter=0;
 
-    public Kategori( String ad) {
+    public Kategori(String ad) {
         idCounter++;
         id=idCounter;
         this.ad = ad;
@@ -13,17 +13,13 @@ public class Kategori {
 
     public int getId() {
         return id;
-
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getAd() {
         return ad;
     }
-
     public void setAd(String ad) {
         this.ad = ad;
     }
