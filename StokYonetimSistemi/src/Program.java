@@ -11,6 +11,7 @@ public class Program {
         return true;
     }
     public int basla(){
+
         setup();
         Scanner scanner = new Scanner(System.in);
         int input = 0;
@@ -23,6 +24,7 @@ public class Program {
             input=scanner.nextInt();
                 switch (input){
                     case 1:
+
                         break;
                     case 2:
                         break;
