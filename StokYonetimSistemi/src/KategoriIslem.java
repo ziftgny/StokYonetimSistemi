@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class KategoriIslem extends CRUDIslemler<Kategori>{
 
@@ -17,16 +14,23 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
     public int basla() {
 
             do {
-                System.out.println("Kategori İşlemleri");
-                System.out.println();
-                System.out.println("Lütfen Yapmak İstediğiniz işlemi seçiniz: ");
-                System.out.println("1-Kategori Oku");
-                System.out.println("2-Kategori Oluştur");
-                System.out.println("3-Kategori Sil");
-                System.out.println("4-Kategori Düzenle");
-                System.out.println("0-Geri Dön");
-                input = soru.nextInt();
-                soru.nextLine(); //scanner temizleme
+                try {
+                    System.out.println("Kategori İşlemleri");
+                    System.out.println("-------------------------------------------");
+                    System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz: ");
+                    System.out.println("1-Kategori Oku");
+                    System.out.println("2-Kategori Oluştur");
+                    System.out.println("3-Kategori Sil");
+                    System.out.println("4-Kategori Düzenle");
+                    System.out.println("0-Geri Dön");
+                    input = soru.nextInt();
+                    soru.nextLine(); //scanner temizleme
+                }catch (Exception e){
+                    System.out.println();
+                    System.out.println("Geçersiz Değer Girdiniz");
+                    System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                    System.out.println();
+                }
                 switch (input) {
                     case 1:
                         oku();
@@ -47,7 +51,9 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                     case 0:
                         return 0;
                     default:
-                        System.out.println("hatalı değer girdiniz");
+                        System.out.println("Hatalı Değer Girdiniz");
+                        System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                        System.out.println();
                         break;
                 }
 
@@ -56,13 +62,14 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
     }
     @Override
     public void oku() {
-        System.out.println("Kategoriler:");
         System.out.println();
+        System.out.println("Kategoriler:");
         for (Kategori kategori : liste) {
             System.out.println("ID: " + kategori.getId() + ", Ad: " + kategori.getAd());
+
         }
         System.out.println();
-
+        System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
     }
     @Override
     public void olustur() {
@@ -71,24 +78,44 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
         ad = soru.nextLine();
         Kategori kategori = new Kategori(ad);
         liste.add(kategori);
+        System.out.println();
+        System.out.println("'"+ad+"' Kategorisi Eklendi");
+        System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+        System.out.println();
     }
     @Override
     public void sil() {
-
         try {
-            System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
-            id = soru.nextInt();
-            liste.remove(id-1);
-        }catch(Exception e){
+        System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
+        id = soru.nextInt();
+        soru.nextLine(); //scanner temizleme
+        for (Kategori kategori : liste) {
+            if (id == kategori.getId()) {
+                liste.remove(kategori);
+                System.out.println("'" + kategori.getAd() + "' Kategorisi silindi");
+                System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                System.out.println();
+            } else {
+                continue;
+            }
+        }
+    }catch (ConcurrentModificationException e){
+            if (id!=1) {
+                System.out.println("Geçersiz ID girdiniz");
+                System.out.println("İşlem iptal ediliyor");
+            }
+        }
+        catch (InputMismatchException e){
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
             soru.nextLine(); //scanner temizleme
         }
     }
+
     @Override
     public void duzenle() {
         String ad;
-        Kategori degisenKategori = null;
+        Kategori degisenKategori = new Kategori(null);
         try {
             System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
             input = soru.nextInt();
@@ -99,19 +126,18 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                     break;
                 }
             }
-
-        }catch (Exception e){
-            System.out.println("Geçersiz ID girdiniz");
-            System.out.println("İşlem iptal ediliyor");
-            soru.nextLine(); //scanner temizleme
-        }
-        if (degisenKategori != null){
+        if (degisenKategori.getAd() != null){
             System.out.println("Yeni ismi giriniz: ");
             ad = soru.nextLine();
             degisenKategori.setAd(ad);
         }else {
-            System.out.println("Geçersiz id girdiniz.");
+            System.out.println("Geçersiz ID girdiniz.");
             System.out.println("İşlem iptal ediliyor");
+        }
+        }catch (Exception e){
+            System.out.println("Geçersiz ID girdiniz");
+            System.out.println("İşlem iptal ediliyor");
+            soru.nextLine(); //scanner temizleme
         }
     }
 }

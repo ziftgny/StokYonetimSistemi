@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c4f5785-af04-4899-bd46-f55740fe58bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StokYonetimSistemi/src/KategoriIslem.java" beforeDir="false" afterPath="$PROJECT_DIR$/StokYonetimSistemi/src/KategoriIslem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StokYonetimSistemi/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/StokYonetimSistemi/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StokYonetimSistemi/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/StokYonetimSistemi/src/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proje/KategoriIslem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proje/Program.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
