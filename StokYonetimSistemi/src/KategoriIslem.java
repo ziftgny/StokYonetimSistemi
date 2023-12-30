@@ -54,12 +54,9 @@ public class KategoriIslem extends CRUDIslemler{
             System.out.println("ID: " + kategori.getId() + ", Ad: " + kategori.getAd());
         }
         System.out.println();
-
     }
-
     @Override
     public void olustur() {
-
     }
 
     @Override
