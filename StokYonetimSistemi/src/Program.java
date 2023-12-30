@@ -16,19 +16,17 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         int input = 0;
         do {
-            System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
-            System.out.println("1-Kategori işlemleri");
-            System.out.println("2-Marka işlemleri");
-            System.out.println("3-Ürün işlemleri");
-            System.out.println("0-Çıkış");
-            input=scanner.nextInt();
+                System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
+                System.out.println("1-Kategori işlemleri");
+                System.out.println("2-Marka işlemleri");
+                System.out.println("3-Ürün işlemleri");
+                System.out.println("0-Çıkış");
+                input = scanner.nextInt();
                 switch (input){
                     case 1:
 
                         KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
                         kategoriIslem.basla();
-
-
 
                         break;
                     case 2:
@@ -43,6 +41,7 @@ public class Program {
                 }
         }while(input!=0);
         return 1;
+
     }
     public void setup(){
         Collections.addAll(markaListesi

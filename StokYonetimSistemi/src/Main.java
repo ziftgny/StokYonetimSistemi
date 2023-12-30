@@ -8,5 +8,4 @@ public class Main {
                 System.out.println("Girilen bilgiler yanlış!");
             }
         }
-        //merabaaa
     }
