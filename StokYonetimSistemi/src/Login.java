@@ -11,7 +11,7 @@ public class Login {
                  new Kullanici("hilmigndogdu","gs1905")
                  );
      }
-    public void basla(){
+    public boolean basla(){
          setup();
         Scanner scanner = new Scanner(System.in);
         System.out.println("yönetici ise 1 \n kullanıcı ise 2 yazınız");
@@ -21,17 +21,25 @@ public class Login {
                 break;
             case 2:
                 System.out.println("kullanıcı girişi için kullanıcı adı giriniz: ");
-                String kullanıcı1 = scanner.nextLine();
+                String kAdi = scanner.nextLine();
                 System.out.println("kullanıcı girişi için şifre giriniz: ");
-                String sifre1 = scanner.nextLine();
+                String sifre = scanner.nextLine();
                 for (Kullanici k:kullaniciArrayList) {
-                    if(sifre1.equals(k.getSifre())){
-
+                    if(sifre.equals(k.getSifre())){
+                        if(kAdi.equals(k.getKullaniciAdi())){
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                     }
                 }
-
-
-                }
+                return false;
+            default:
+                System.out.println("geçersiz değer");
                 break;
         }
+        return false;
     }
 }
