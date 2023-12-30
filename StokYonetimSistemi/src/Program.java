@@ -24,17 +24,12 @@ public class Program {
             input=scanner.nextInt();
                 switch (input){
                     case 1:
-<<<<<<< HEAD
-                        KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
-                        kategoriIslem.basla();
-=======
 
                         KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
                         kategoriIslem.basla();
 
 
 
->>>>>>> bcd17b72c2034445c9f6b8102eaca3e87212c65a
                         break;
                     case 2:
                         break;
