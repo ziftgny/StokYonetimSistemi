@@ -30,6 +30,7 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                     System.out.println("Geçersiz Değer Girdiniz");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
+                    soru.nextLine(); //scanner temizleme
                 }
                 switch (input) {
                     case 1:
@@ -50,11 +51,6 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                         break;
                     case 0:
                         return 0;
-                    default:
-                        System.out.println("Hatalı Değer Girdiniz");
-                        System.out.println("Lütfen Geçerli Bir Değer Giriniz");
-                        System.out.println();
-                        break;
                 }
 
             } while (input != 0);
@@ -91,21 +87,16 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
         soru.nextLine(); //scanner temizleme
         for (Kategori kategori : liste) {
             if (id == kategori.getId()) {
-                liste.remove(kategori);
                 System.out.println("'" + kategori.getAd() + "' Kategorisi silindi");
                 System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                 System.out.println();
-            } else {
-                continue;
+                liste.remove(kategori);
+                return;
             }
         }
-    }catch (ConcurrentModificationException e){
-            if (id!=1) {
-                System.out.println("Geçersiz ID girdiniz");
-                System.out.println("İşlem iptal ediliyor");
-            }
-        }
-        catch (InputMismatchException e){
+            System.out.println("Geçersiz ID girdiniz");
+            System.out.println("İşlem iptal ediliyor");
+    }catch (InputMismatchException e){
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
             soru.nextLine(); //scanner temizleme
