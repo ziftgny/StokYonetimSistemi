@@ -5,15 +5,13 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
     KategoriIslem(ArrayList<Kategori> kategorilistesi){
         liste = kategorilistesi;
     }
-
-    Scanner soru = new Scanner(System.in);
     int input;
     int id;
 
 
     public int basla() {
-
-            do {
+        Scanner soru = new Scanner(System.in);
+        do {
                 try {
                     System.out.println("Kategori İşlemleri");
                     System.out.println("-------------------------------------------");
@@ -24,13 +22,21 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                     System.out.println("4-Kategori Düzenle");
                     System.out.println("0-Geri Dön");
                     input = soru.nextInt();
-                    soru.nextLine(); //scanner temizleme
+                    soru.nextLine();
+
+                    //scanner temizleme
                 }catch (Exception e){
                     System.out.println();
                     System.out.println("Geçersiz Değer Girdiniz");
-                    System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                    System.out.println("Lütfen Geçerli Bir Değer Giriniz");
                     System.out.println();
                     soru.nextLine(); //scanner temizleme
+                    input=1;
+                    //do while ın çalışma şartı input un 0 olmaması bu exception durumunda
+                    //input 0 kaldığı için program calısmayı kesiyor bunu engellemek için
+                    //input u 0 yapmıyoruz.
+                    continue;
+
                 }
                 switch (input) {
                     case 1:
@@ -43,10 +49,18 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                         break;
                     case 3:
                         sil();
+
                         System.out.println();
                         break;
                     case 4:
                         duzenle();
+                        System.out.println();
+                        break;
+                    default:
+                        System.out.println();
+                        System.out.println("Geçersiz Değer Girdiniz");
+                        System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+
                         System.out.println();
                         break;
                     case 0:
@@ -54,6 +68,7 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
                 }
 
             } while (input != 0);
+
             return 1;
     }
     @Override
@@ -69,6 +84,7 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
     }
     @Override
     public void olustur() {
+        Scanner soru = new Scanner(System.in);
         String ad;
         System.out.println("Eklemek istediğiniz kategorinin ismini giriniz: ");
         ad = soru.nextLine();
@@ -81,6 +97,7 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
     }
     @Override
     public void sil() {
+        Scanner soru = new Scanner(System.in);
         try {
         System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
         id = soru.nextInt();
@@ -105,30 +122,35 @@ public class KategoriIslem extends CRUDIslemler<Kategori>{
 
     @Override
     public void duzenle() {
+        Scanner soru = new Scanner(System.in);
+        int counter=0;
         String ad;
-        Kategori degisenKategori = new Kategori(null);
+        int input;
+        System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
         try {
-            System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
-            input = soru.nextInt();
-            soru.nextLine(); //scanner temizleme
-            for (Kategori kategori : liste) {
-                if (kategori.getId() == input) {
-                    degisenKategori = kategori;
-                    break;
-                }
+        input = soru.nextInt();
+        for (Kategori k:liste) {
+            if(k.getId()==input){
+                soru.nextLine();
+                System.out.println("Yeni ismi giriniz: ");
+                k.setAd(soru.nextLine());
+                counter++;
+                System.out.println();
+                System.out.println("Kategori '"+k.getAd()+"' olarak düzenlendi.");
+                System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                System.out.println();
             }
-        if (degisenKategori.getAd() != null){
-            System.out.println("Yeni ismi giriniz: ");
-            ad = soru.nextLine();
-            degisenKategori.setAd(ad);
-        }else {
+        }
+        if (counter == 0) {
+            System.out.println();
             System.out.println("Geçersiz ID girdiniz.");
             System.out.println("İşlem iptal ediliyor");
         }
-        }catch (Exception e){
+        }catch (Exception e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
             soru.nextLine(); //scanner temizleme
         }
+
     }
 }

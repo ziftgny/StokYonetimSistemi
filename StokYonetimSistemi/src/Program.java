@@ -11,7 +11,6 @@ public class Program {
         return true;
     }
     public int basla(){
-
         setup();
         Scanner scanner = new Scanner(System.in);
         int input = 0;
