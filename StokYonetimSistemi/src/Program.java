@@ -10,7 +10,7 @@ public class Program {
     public boolean login(){
         return true;
     }
-    public int basla(){
+    public boolean basla(){
 
         setup();
         Scanner scanner = new Scanner(System.in);
@@ -34,13 +34,12 @@ public class Program {
                     case 3:
                         break;
                     case 0:
-                        return 0;
+                        return false;
                     default:
                         System.out.println("hatalı değer girdiniz");
                         break;
                 }
-        }while(input!=0);
-        return 1;
+        }while(true);
 
     }
     public void setup(){
