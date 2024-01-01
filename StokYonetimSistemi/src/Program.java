@@ -10,8 +10,12 @@ public class Program {
     public boolean login(){
         return true;
     }
+<<<<<<< HEAD
     public boolean basla(){
 
+=======
+    public int basla(){
+>>>>>>> 0eb4af749a5d514f5f5ff65258b33467fc864ba5
         setup();
         Scanner scanner = new Scanner(System.in);
         int input = 0;
