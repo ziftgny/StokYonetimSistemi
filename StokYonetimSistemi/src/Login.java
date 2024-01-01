@@ -21,6 +21,8 @@ public class Login {
         Scanner scanner = new Scanner(System.in);
         System.out.println("yönetici ise 1 \n kullanıcı ise 2 yazınız");
         int kim = scanner.nextInt();
+        //reset
+        scanner.nextLine();
         switch (kim){
             case 1:  System.out.println("yönetici girişi için kullanıcı adı giriniz: ");
                 String kAdi1 = scanner.nextLine();
@@ -31,14 +33,11 @@ public class Login {
                         if(kAdi1.equals(k1.getKullaniciAdi())){
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
+
                     }
                 }
-
-
+                System.out.println("şifre veya kullanıcı adı yanlış");
+                return false;
             case 2:
                 System.out.println("kullanıcı girişi için kullanıcı adı giriniz: ");
                 String kAdi = scanner.nextLine();
@@ -49,12 +48,11 @@ public class Login {
                         if(kAdi.equals(k.getKullaniciAdi())){
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
+
                      }
+
                 }
+                System.out.println("şifre veya kullanıcı adı yanlış");
                 return false;
             default:
                 System.out.println("geçersiz değer");
