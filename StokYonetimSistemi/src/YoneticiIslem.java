@@ -1,26 +1,28 @@
-import java.util.*;
 
-public class KategoriIslem extends CRUDIslemler<Kategori> {
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-    KategoriIslem(ArrayList<Kategori> kategorilistesi) {
-        liste = kategorilistesi;
+public class YoneticiIslem extends CRUDIslemler<Kullanici> {
+
+    YoneticiIslem(ArrayList<Kullanici> kullanicilistesi) {
+        liste = kullanicilistesi;
     }
 
     int input;
     int id;
 
-
     public int basla() {
         Scanner soru = new Scanner(System.in);
         do {
             try {
-                System.out.println("Kategori İşlemleri");
+                System.out.println("Yönetici İşlemleri");
                 System.out.println("-------------------------------------------");
                 System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz: ");
-                System.out.println("1-Kategori Oku");
-                System.out.println("2-Kategori Oluştur");
-                System.out.println("3-Kategori Sil");
-                System.out.println("4-Kategori Düzenle");
+                System.out.println("1-Kullanıcı Oku");
+                System.out.println("2-Kullanıcı Oluştur");
+                System.out.println("3-Kullanıcı Sil");
+                System.out.println("4-Kullanıcı Düzenle");
                 System.out.println("0-Geri Dön");
                 input = soru.nextInt();
                 soru.nextLine();
@@ -50,7 +52,6 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
                     break;
                 case 3:
                     sil();
-
                     System.out.println();
                     break;
                 case 4:
@@ -61,11 +62,10 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
                     System.out.println();
                     System.out.println("Geçersiz Değer Girdiniz");
                     System.out.println("Lütfen Geçerli Bir Değer Giriniz");
-
                     System.out.println();
                     break;
                 case 0:
-                    return 0;
+                    continue;
             }
 
         } while (input != 0);
@@ -76,42 +76,47 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
     @Override
     public void oku() {
         System.out.println();
-        System.out.println("Kategoriler:");
-        for (Kategori kategori : liste) {
-            System.out.println("ID: " + kategori.getId() + ", Ad: " + kategori.getAd());
+        System.out.println("Kullanıcılar:");
+        for (Kullanici kullanici : liste) {
+            System.out.println("ID: " + kullanici.getId() + ", Ad: " + kullanici.getKullaniciAdi() + ", Şifre: " + kullanici.getSifre());
 
         }
         System.out.println();
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
     }
 
+
     @Override
     public void olustur() {
         Scanner soru = new Scanner(System.in);
         String ad;
-        System.out.println("Eklemek istediğiniz kategorinin ismini giriniz: ");
+        String sifre;
+        System.out.println("Eklemek istediğiniz kullanıcının ismini giriniz: ");
         ad = soru.nextLine();
-        Kategori kategori = new Kategori(ad);
-        liste.add(kategori);
+        System.out.println("Eklemek istediğiniz kullanıcının şifresini giriniz: ");
+        sifre = soru.nextLine();
+        Kullanici kullanici = new Kullanici(ad, sifre);
+        liste.add(kullanici);
         System.out.println();
-        System.out.println("'" + ad + "' Kategorisi Eklendi");
+        System.out.println("'" + ad + "' Kullanıcısı Eklendi");
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
         System.out.println();
+
     }
 
     @Override
     public void sil() {
         Scanner soru = new Scanner(System.in);
         try {
-            System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
+            System.out.println("Silmek istediğiniz kullanıcının idsini giriniz: ");
             id = soru.nextInt();
             soru.nextLine(); //scanner temizleme
-            for (Kategori kategori : liste) {
-                if (id == kategori.getId()) {
-                    System.out.println("'" + kategori.getAd() + "' Kategorisi silindi");
+            for (Kullanici kullanici : liste) {
+                if (id == kullanici.getId()) {
+                    System.out.println("'" + kullanici.getKullaniciAdi() + "' Kullanıcısı silindi");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
-                    liste.remove(kategori);
+                    liste.remove(kullanici);
                     return;
                 }
             }
@@ -124,23 +129,26 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
         }
     }
 
+
     @Override
     public void duzenle() {
         Scanner soru = new Scanner(System.in);
         int counter = 0;
         String ad;
         int input;
-        System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
+        System.out.println("Düzenlemek istediğiniz kullanıcının idsini giriniz:  ");
         try {
             input = soru.nextInt();
-            for (Kategori k : liste) {
-                if (k.getId() == input) {
+            for (Kullanici kullanici : liste) {
+                if (kullanici.getId() == input) {
                     soru.nextLine();
                     System.out.println("Yeni ismi giriniz: ");
-                    k.setAd(soru.nextLine());
+                    kullanici.setKullaniciAdi(soru.nextLine());
+                    System.out.println("Yeni şifreyi giriniz: ");
+                    kullanici.setSifre(soru.nextLine());
                     counter++;
                     System.out.println();
-                    System.out.println("Kategori '" + k.getAd() + "' olarak düzenlendi.");
+                    System.out.println("Kullanıcı '" + kullanici.getKullaniciAdi() + "' olarak düzenlendi.");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
                 }
@@ -157,4 +165,6 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
         }
 
     }
+
 }
+
