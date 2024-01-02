@@ -22,12 +22,8 @@ public class Login {
         setup();
         Scanner scanner = new Scanner(System.in);
         int kim = 0;
-        System.out.println();
-        System.out.println("STOK YÖNETİM SİSTEMİNE HOŞGELDİNİZ");
-        System.out.println();
         do {
             try {
-
                 System.out.println("Yönetici Girişi İçin 1 Kullanıcı Girişi İçin 2 Yazınız");
                 kim = scanner.nextInt(); //reset
                 scanner.nextLine();
@@ -38,32 +34,18 @@ public class Login {
                         System.out.println("Yönetici Girişi");
                         System.out.println("-------------------------------------------");
                         do {
-                        System.out.println("Yönetici adını giriniz: ");
-                        String kAdi1 = scanner.nextLine();
-                        System.out.println("Şifreyi giriniz: ");
-                        String sifre1 = scanner.nextLine();
+                            System.out.println("Yönetici adını giriniz: ");
+                            String kAdi1 = scanner.nextLine();
+                            System.out.println("Şifreyi giriniz: ");
+                            String sifre1 = scanner.nextLine();
                             for (Yonetici k1 : yoneticiArrayList) {
                                 if (sifre1.equals(k1.getSifre())) {
                                     if (kAdi1.equals(k1.getKullaniciAdi())) {
-                                        System.out.println();
-                                        System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz");
-                                        System.out.println();
-                                        System.out.println("1-Yönetici İşlemleri");
-                                        System.out.println("2-Stok İşlemleri ");
-                                        System.out.println("0-Kullanıcı Girişi");
-                                        System.out.println();
-                                        int secim = scanner.nextInt();
-
-                                        if (secim == 1) {
-                                            YoneticiIslem yoneticiIslem = new YoneticiIslem(kullaniciArrayList);
-                                            yoneticiIslem.basla();
-                                        }
-                                        if (secim == 2) {
+                                        YoneticiIslem yoneticiIslem = new YoneticiIslem(kullaniciArrayList);
+                                        if (yoneticiIslem.basla() == 1) {
                                             return 1;
-                                        }
-                                        if (secim == 0) {
-                                            return 0;
-                                        }
+                                        }else{
+                                            return 0;                                        }
                                     }
                                 }
                             }
@@ -72,6 +54,7 @@ public class Login {
                             counter++;
                         } while (counter != 0);
                     case 2:
+                        System.out.println();
                         System.out.println("Kullanıcı Girişi");
                         System.out.println("-------------------------------------------");
                         System.out.println("Kullanıcı adını giriniz: ");
