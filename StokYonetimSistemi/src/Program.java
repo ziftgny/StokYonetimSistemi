@@ -12,37 +12,42 @@ public class Program {
     }
 
     public boolean basla() {
-        setup();
         Scanner scanner = new Scanner(System.in);
         int input = 0;
-        do {
-            System.out.println();
-            System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
-            System.out.println("1-Kategori işlemleri");
-            System.out.println("2-Marka işlemleri");
-            System.out.println("3-Ürün işlemleri");
-            System.out.println("0-Çıkış");
-            input = scanner.nextInt();
-            switch (input) {
-                case 1:
-                    KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
-                    kategoriIslem.basla();
-                    break;
-                case 2:
-                    Markaİslem markaİslem=new Markaİslem(markaListesi);
-                    markaİslem.basla();
-                    break;
-                case 3:
-                    Urunİslemleri urunİslemleri=new Urunİslemleri(urunListesi);
-                    urunİslemleri.basla();
-                    break;
-                case 0:
-                    return false;
-                default:
-                    System.out.println("hatalı değer girdiniz");
-                    break;
+            while (true){
+                try {
+                    System.out.println();
+                    System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
+                    System.out.println("1-Kategori işlemleri");
+                    System.out.println("2-Marka işlemleri");
+                    System.out.println("3-Ürün işlemleri");
+                    System.out.println("0-Giriş Paneli");
+                    input = scanner.nextInt();
+                    switch (input) {
+                        case 1:
+                            KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
+                            kategoriIslem.basla();
+                            break;
+                        case 2:
+                            MarkaIslem markaIslem = new MarkaIslem(markaListesi);
+                            markaIslem.basla();
+                            break;
+                        case 3:
+                            UrunIslem urunIslem = new UrunIslem(urunListesi);
+                            urunIslem.basla();
+                            break;
+                        case 0:
+                            return false;
+                        default:
+                            System.out.println("hatalı değer girdiniz");
+                            break;
+                }
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println("Geçersiz Değer Girdiniz");
+                    scanner.nextLine(); //scanner temizleme
+                }
             }
-        } while (true);
 
     }
 

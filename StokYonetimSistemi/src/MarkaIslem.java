@@ -2,26 +2,26 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Urunİslemleri extends  CRUDIslemler<Urun>{
-    Urunİslemleri(ArrayList<Urun> urunListesi) {liste=urunListesi;}
-     int id;
+public class MarkaIslem extends CRUDIslemler<Marka>{
+    MarkaIslem(ArrayList<Marka> markaListesi) {
+        liste = markaListesi;
+    }
 
-     double fiyat;
-     int stok;
-     Marka marka;
-     Kategori kategori;
-     int input;
+    int input;
+    int id;
+
+
     public int basla() {
         Scanner soru = new Scanner(System.in);
         do {
             try {
-                System.out.println("Urun İşlemleri");
+                System.out.println("Marka İşlemleri");
                 System.out.println("-------------------------------------------");
                 System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz: ");
-                System.out.println("1-Urun Oku");
-                System.out.println("2-Urun Oluştur");
-                System.out.println("3-Urun Sil");
-                System.out.println("4-Urun Düzenle");
+                System.out.println("1-Marka Oku");
+                System.out.println("2-Marka Oluştur");
+                System.out.println("3-Marka Sil");
+                System.out.println("4-Marka Düzenle");
                 System.out.println("0-Geri Dön");
                 input = soru.nextInt();
                 soru.nextLine();
@@ -51,7 +51,6 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
                     break;
                 case 3:
                     sil();
-
                     System.out.println();
                     break;
                 case 4:
@@ -77,9 +76,9 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
     @Override
     public void oku() {
         System.out.println();
-        System.out.println("Ürünler:");
-        for (Urun urun : liste) {
-            System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd()+",Fiyat: "+urun.getFiyat()+",Kategori: "+urun.getKategori().getAd() +",Stok: "+urun.getStok()+",Marka: "+urun.getMarka().getAd());
+        System.out.println("Markalar:");
+        for (Marka marka : liste) {
+            System.out.println("ID: " + marka.getId() + ", Ad: " + marka.getAd());
 
         }
         System.out.println();
@@ -90,19 +89,12 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
     public void olustur() {
         Scanner soru = new Scanner(System.in);
         String ad;
-        String marka;
-        System.out.println("Eklemek istediğiniz ürün ismini giriniz: ");
+        System.out.println("Eklemek istediğiniz marka ismini giriniz: ");
         ad = soru.nextLine();
-        System.out.println("Eklemek istediğiniz ürün fiyatını giriniz: ");
-        fiyat=soru.nextInt();
-        System.out.println("Eklemek istediğiniz ürün stokunu giriniz: ");
-        stok=soru.nextInt();
-        System.out.println("Eklemek istediğiniz ürün markasını giriniz: ");
-         marka=soru.nextLine();
-        Urun urun = new Urun(ad,fiyat,stok,marka,kategori);
-        liste.add(urun);
+        Marka marka = new Marka(ad);
+        liste.add(marka);
         System.out.println();
-        System.out.println("'" + ad + "' Ürün Eklendi");
+        System.out.println("'" + ad + "' Markası Eklendi");
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
         System.out.println();
     }
@@ -114,12 +106,12 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
             System.out.println("Silmek istediğiniz markanın idsini giriniz: ");
             id = soru.nextInt();
             soru.nextLine(); //scanner temizleme
-            for (Urun urun : liste) {
-                if (id == urun.getId()) {
-                    System.out.println("'" + urun.getAd() + "' Ürünü silindi");
+            for (Marka marka : liste) {
+                if (id == marka.getId()) {
+                    System.out.println("'" + marka.getAd() + "' Markası silindi");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
-                    liste.remove(urun);
+                    liste.remove(marka);
                     return;
                 }
             }
@@ -136,19 +128,18 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
     public void duzenle() {
         Scanner soru = new Scanner(System.in);
         int counter = 0;
-        String ad;
         int input;
-        System.out.println("İsmini değiştirmek istediğiniz ürünün idsini giriniz:  ");
+        System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
         try {
             input = soru.nextInt();
-            for (Urun u : liste) {
-                if (u.getId() == input) {
+            for (Marka m : liste) {
+                if (m.getId() == input) {
                     soru.nextLine();
                     System.out.println("Yeni ismi giriniz: ");
-                    u.setAd(soru.nextLine());
+                    m.setAd(soru.nextLine());
                     counter++;
                     System.out.println();
-                    System.out.println("Ürün '" + u.getAd() + "' olarak düzenlendi.");
+                    System.out.println("Marka '" + m.getAd() + "' olarak düzenlendi.");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
                 }
@@ -166,3 +157,5 @@ public class Urunİslemleri extends  CRUDIslemler<Urun>{
 
     }
 }
+
+

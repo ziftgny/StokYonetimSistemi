@@ -19,40 +19,39 @@ public class Login {
     }
 
     public int basla() {
-        setup();
         Scanner scanner = new Scanner(System.in);
-        int kim = 0;
-        do {
+        int secim = 0;
+        while(true) {
             try {
-                System.out.println("Yönetici Girişi İçin 1 Kullanıcı Girişi İçin 2 Yazınız");
-                kim = scanner.nextInt(); //reset
-                scanner.nextLine();
-                switch (kim) {
+                System.out.println("1-Yönetici girişi");
+                System.out.println("2-Kullanıcı girişi");
+                System.out.println("3-Çıkış");
+                secim = scanner.nextInt();
+                scanner.nextLine(); //reset
+                switch (secim) {
                     case 1:
                         int counter = 0;
                         System.out.println();
                         System.out.println("Yönetici Girişi");
                         System.out.println("-------------------------------------------");
-                        do {
                             System.out.println("Yönetici adını giriniz: ");
-                            String kAdi1 = scanner.nextLine();
+                            String yoneticiKAdi = scanner.nextLine();
                             System.out.println("Şifreyi giriniz: ");
-                            String sifre1 = scanner.nextLine();
+                            String sifreY = scanner.nextLine();
                             for (Yonetici k1 : yoneticiArrayList) {
-                                if (sifre1.equals(k1.getSifre())) {
-                                    if (kAdi1.equals(k1.getKullaniciAdi())) {
+                                if (sifreY.equals(k1.getSifre())) {
+                                    if (yoneticiKAdi.equals(k1.getKullaniciAdi())) {
                                         YoneticiIslem yoneticiIslem = new YoneticiIslem(kullaniciArrayList);
-                                        if (yoneticiIslem.basla() == 1) {
+                                        if(yoneticiIslem.basla()==1)
                                             return 1;
-                                        }else{
-                                            return 0;                                        }
+                                        counter++;
                                     }
                                 }
                             }
-                            System.out.println("Hatalı Giriş");
-                            System.out.println();
-                            counter++;
-                        } while (counter != 0);
+                            if(counter==0){
+                                System.out.println("böyle bir hesap bulunamadı");
+                            }
+                            break;
                     case 2:
                         System.out.println();
                         System.out.println("Kullanıcı Girişi");
@@ -60,33 +59,25 @@ public class Login {
                         System.out.println("Kullanıcı adını giriniz: ");
                         String kAdi = scanner.nextLine();
                         System.out.println("Şifreyi giriniz: ");
-                        String sifre = scanner.nextLine();
+                        String sifreK = scanner.nextLine();
                         for (Kullanici k : kullaniciArrayList) {
-                            if (sifre.equals(k.getSifre())) {
+                            if (sifreK.equals(k.getSifre())) {
                                 if (kAdi.equals(k.getKullaniciAdi())) {
                                     return 1;
                                 }
-
                             }
-
                         }
                         System.out.println("Kullanıcı Adı veya Şifre Yanlış");
-                        return 2;
-
+                        break;
+                    case 3:
+                        return 3;
                     default:
                         System.out.println("Geçersiz Değer");
-                        System.out.println();
-                        break;
                 }
             } catch (Exception e) {
                 System.out.println("Geçersiz Değer");
-                System.out.println();
                 scanner.nextLine(); //reset
-                continue;
             }
-        } while (kim != 1 || kim != 2);
-        return 2;
-
-
+        }
     }
 }
