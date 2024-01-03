@@ -29,8 +29,12 @@ public class Program {
                     kategoriIslem.basla();
                     break;
                 case 2:
+                    Markaİslem markaİslem=new Markaİslem(markaListesi);
+                    markaİslem.basla();
                     break;
                 case 3:
+                    Urunİslemleri urunİslemleri=new Urunİslemleri(urunListesi);
+                    urunİslemleri.basla();
                     break;
                 case 0:
                     return false;
@@ -57,9 +61,9 @@ public class Program {
                 , new Kategori("Notebook")
         );
         Collections.addAll(urunListesi
-                , new Urun("deneme", 37.24, 54, getMarkaByID(1), getKategoriByID(1))
-                , new Urun("denemeee", 21.24, 54, getMarkaByID(2), getKategoriByID(3))
-                , new Urun("denemeeee", 12.24, 54, getMarkaByID(3), getKategoriByID(1))
+                , new Urun("GalaxyS5", 1049.24, 54, getMarkaByID(1), getKategoriByID(1))
+                , new Urun("Apple2", 2500.24, 51, getMarkaByID(2), getKategoriByID(3))
+                , new Urun("İntel785", 5563.24, 48, getMarkaByID(3), getKategoriByID(1))
         );
 
     }
@@ -81,4 +85,5 @@ public class Program {
         System.out.println("Kategori bulunamadı");
         return null;
     }
+
 }
