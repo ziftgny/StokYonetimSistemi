@@ -3,7 +3,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UrunIslem extends  CRUDIslemler<Urun>{
-    UrunIslem(ArrayList<Urun> urunListesi) {liste=urunListesi;}
+    ArrayList<Marka> markaListesi = new ArrayList<>();
+    ArrayList<Kategori> kategoriListesi = new ArrayList<>();
+    UrunIslem(ArrayList<Urun> urunListesi,ArrayList<Marka> markaListesi,ArrayList<Kategori> kategoriListesi)
+    {
+        liste=urunListesi;
+        this.markaListesi=markaListesi;
+        this.kategoriListesi=kategoriListesi;
+    }
      int id;
 
      double fiyat;

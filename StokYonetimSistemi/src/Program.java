@@ -33,7 +33,7 @@ public class Program {
                             markaIslem.basla();
                             break;
                         case 3:
-                            UrunIslem urunIslem = new UrunIslem(urunListesi);
+                            UrunIslem urunIslem = new UrunIslem(urunListesi,markaListesi,kategoriListesi);
                             urunIslem.basla();
                             break;
                         case 0:
