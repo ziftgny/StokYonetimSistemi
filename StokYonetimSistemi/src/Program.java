@@ -8,46 +8,46 @@ public class Program {
     ArrayList<Urun> urunListesi = new ArrayList<>();
 
     public boolean login() {
-        return true;
+        return true; // bu ne la
     }
 
     public boolean basla() {
         Scanner scanner = new Scanner(System.in);
         int input = 0;
-            while (true){
-                try {
-                    System.out.println();
-                    System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
-                    System.out.println("1-Kategori işlemleri");
-                    System.out.println("2-Marka işlemleri");
-                    System.out.println("3-Ürün işlemleri");
-                    System.out.println("0-Giriş Paneli");
-                    input = scanner.nextInt();
-                    switch (input) {
-                        case 1:
-                            KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
-                            kategoriIslem.basla();
-                            break;
-                        case 2:
-                            MarkaIslem markaIslem = new MarkaIslem(markaListesi);
-                            markaIslem.basla();
-                            break;
-                        case 3:
-                            UrunIslem urunIslem = new UrunIslem(urunListesi,markaListesi,kategoriListesi);
-                            urunIslem.basla();
-                            break;
-                        case 0:
-                            return false;
-                        default:
-                            System.out.println("hatalı değer girdiniz");
-                            break;
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("Sisteme hoş geldiniz! işlem seçiniz");
+                System.out.println("1-Kategori işlemleri");
+                System.out.println("2-Marka işlemleri");
+                System.out.println("3-Ürün işlemleri");
+                System.out.println("0-Giriş Paneli");
+                input = scanner.nextInt();
+                switch (input) {
+                    case 1:
+                        KategoriIslem kategoriIslem = new KategoriIslem(kategoriListesi);
+                        kategoriIslem.basla();
+                        break;
+                    case 2:
+                        MarkaIslem markaIslem = new MarkaIslem(markaListesi);
+                        markaIslem.basla();
+                        break;
+                    case 3:
+                        UrunIslem urunIslem = new UrunIslem(urunListesi, markaListesi, kategoriListesi);
+                        urunIslem.basla();
+                        break;
+                    case 0:
+                        return false;
+                    default:
+                        System.out.println("Hatalı değer girdiniz");
+                        break;
                 }
-                } catch (Exception e) {
-                    System.out.println();
-                    System.out.println("Geçersiz Değer Girdiniz");
-                    scanner.nextLine(); //scanner temizleme
-                }
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println("Geçersiz Değer Girdiniz");
+                scanner.nextLine(); //scanner temizleme
             }
+        }
 
     }
 

@@ -4,81 +4,83 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class YoneticiIslem extends CRUDIslemler<Kullanici> {
-
     YoneticiIslem(ArrayList<Kullanici> kullanicilistesi) {
         liste = kullanicilistesi;
     }
 
-    int input;
-    int id;
-
     public int basla() {
-        Scanner soru = new Scanner(System.in);
-        while(true) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
             try {
                 System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz");
                 System.out.println("1-Stok İşlemleri");
                 System.out.println("2-Yönetici İşlemleri");
                 System.out.println("0-Giriş Paneli");
-                int secim = soru.nextInt();
-                if (secim == 2) {
-                    yoneticiIslemleri();
+                int secim = scanner.nextInt();
+                if (secim == 0) {
+                    return 0;
                 } else if (secim == 1) {
                     return 1;
-                } else if (secim == 0) {
-                    return 0;
+                } else if (secim == 2) {
+                    yoneticiIslemleri();
                 } else {
                     System.out.println("Geçersiz Değer Girdiniz");
                 }
             } catch (Exception e) {
                 System.out.println();
                 System.out.println("Geçersiz Değer Girdiniz");
-                soru.nextLine(); //scanner temizleme
+                scanner.nextLine(); //scanner temizleme
             }
-
         }
     }
 
     private void yoneticiIslemleri() {
-        Scanner soru = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        int input;
         do {
-            System.out.println("Yönetici İşlemleri");
-            System.out.println("-------------------------------------------");
-            System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz: ");
-            System.out.println("1-Kullanıcı Oku");
-            System.out.println("2-Kullanıcı Oluştur");
-            System.out.println("3-Kullanıcı Sil");
-            System.out.println("4-Kullanıcı Düzenle");
-            System.out.println("0-Geri Dön");
-            input = soru.nextInt();
-            soru.nextLine();
-
-            //scanner temizleme
-
-            switch (input) {
-                case 1:
-                    oku();
-                    System.out.println();
-                    break;
-                case 2:
-                    olustur();
-                    System.out.println();
-                    break;
-                case 3:
-                    sil();
-                    System.out.println();
-                    break;
-                case 4:
-                    duzenle();
-                    System.out.println();
-                    break;
-                default:
-                    System.out.println("Geçersiz Değer Girdiniz");
-                    System.out.println("Lütfen Geçerli Bir Değer Giriniz");
-                    break;
+            try {
+                System.out.println("Yönetici İşlemleri");
+                System.out.println("-------------------------------------------");
+                System.out.println("Lütfen Yapmak İstediğiniz İşlemi Seçiniz: ");
+                System.out.println("1-Kullanıcı Oku");
+                System.out.println("2-Kullanıcı Oluştur");
+                System.out.println("3-Kullanıcı Sil");
+                System.out.println("4-Kullanıcı Düzenle");
+                System.out.println("0-Geri Dön");
+                input = scanner.nextInt();
+                scanner.nextLine();  //scanner temizleme
+                switch (input) {
+                    case 0:
+                        return;
+                    case 1:
+                        oku();
+                        System.out.println();
+                        break;
+                    case 2:
+                        olustur();
+                        System.out.println();
+                        break;
+                    case 3:
+                        sil();
+                        System.out.println();
+                        break;
+                    case 4:
+                        duzenle();
+                        System.out.println();
+                        break;
+                    default:
+                        System.out.println("Geçersiz Değer Girdiniz");
+                        System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                        System.out.println();
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Geçersiz Değer Girdiniz");
+                System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                System.out.println();
+                scanner.nextLine(); //scanner temizleme
             }
-        } while (input != 0);
-
+        } while (true);
     }
 
     @Override
@@ -87,22 +89,19 @@ public class YoneticiIslem extends CRUDIslemler<Kullanici> {
         System.out.println("Kullanıcılar:");
         for (Kullanici kullanici : liste) {
             System.out.println("ID: " + kullanici.getId() + ", Ad: " + kullanici.getKullaniciAdi() + ", Şifre: " + kullanici.getSifre());
-
         }
         System.out.println();
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
     }
 
-
     @Override
     public void olustur() {
-        Scanner soru = new Scanner(System.in);
-        String ad;
-        String sifre;
+        Scanner scanner = new Scanner(System.in);
+        String ad,sifre;
         System.out.println("Eklemek istediğiniz kullanıcının ismini giriniz: ");
-        ad = soru.nextLine();
+        ad = scanner.nextLine();
         System.out.println("Eklemek istediğiniz kullanıcının şifresini giriniz: ");
-        sifre = soru.nextLine();
+        sifre = scanner.nextLine();
         Kullanici kullanici = new Kullanici(ad, sifre);
         liste.add(kullanici);
         System.out.println();
@@ -114,11 +113,12 @@ public class YoneticiIslem extends CRUDIslemler<Kullanici> {
 
     @Override
     public void sil() {
-        Scanner soru = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        int id;
         try {
             System.out.println("Silmek istediğiniz kullanıcının idsini giriniz: ");
-            id = soru.nextInt();
-            soru.nextLine(); //scanner temizleme
+            id = scanner.nextInt();
+            scanner.nextLine(); //scanner temizleme
             for (Kullanici kullanici : liste) {
                 if (id == kullanici.getId()) {
                     System.out.println("'" + kullanici.getKullaniciAdi() + "' Kullanıcısı silindi");
@@ -133,28 +133,27 @@ public class YoneticiIslem extends CRUDIslemler<Kullanici> {
         } catch (InputMismatchException e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
-            soru.nextLine(); //scanner temizleme
+            scanner.nextLine(); //scanner temizleme
         }
     }
 
 
     @Override
     public void duzenle() {
-        Scanner soru = new Scanner(System.in);
-        int counter = 0;
+        Scanner scanner = new Scanner(System.in);
         String ad;
-        int input;
+        int counter = 0,input;
         System.out.println("Düzenlemek istediğiniz kullanıcının idsini giriniz:  ");
         try {
-            input = soru.nextInt();
+            input = scanner.nextInt();
+            scanner.nextLine(); //scanner temizleme
             for (Kullanici kullanici : liste) {
                 if (kullanici.getId() == input) {
-                    soru.nextLine();
-                    System.out.println("Yeni ismi giriniz: ");
-                    kullanici.setKullaniciAdi(soru.nextLine());
-                    System.out.println("Yeni şifreyi giriniz: ");
-                    kullanici.setSifre(soru.nextLine());
                     counter++;
+                    System.out.println("Yeni ismi giriniz: ");
+                    kullanici.setKullaniciAdi(scanner.nextLine());
+                    System.out.println("Yeni şifreyi giriniz: ");
+                    kullanici.setSifre(scanner.nextLine());
                     System.out.println();
                     System.out.println("Kullanıcı '" + kullanici.getKullaniciAdi() + "' olarak düzenlendi.");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
@@ -169,7 +168,7 @@ public class YoneticiIslem extends CRUDIslemler<Kullanici> {
         } catch (Exception e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
-            soru.nextLine(); //scanner temizleme
+            scanner.nextLine(); //scanner temizleme
         }
 
     }

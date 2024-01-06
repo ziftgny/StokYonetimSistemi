@@ -1,6 +1,9 @@
 public class Kullanici {
     private  int id;
     private static int idCounter=0;
+
+    //Her kullanıcı türünden nesne olusturuldugunda kullanılacak ve
+    // her nesneye benzersiz bir id değeri atayacaktır.
     private String kullaniciAdi;
     private String sifre;
 Kullanici(String kullaniciAdi,String sifre){

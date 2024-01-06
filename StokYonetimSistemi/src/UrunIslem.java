@@ -2,24 +2,19 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UrunIslem extends  CRUDIslemler<Urun>{
+public class UrunIslem extends CRUDIslemler<Urun> {
     ArrayList<Marka> markaListesi = new ArrayList<>();
     ArrayList<Kategori> kategoriListesi = new ArrayList<>();
-    UrunIslem(ArrayList<Urun> urunListesi,ArrayList<Marka> markaListesi,ArrayList<Kategori> kategoriListesi)
-    {
-        liste=urunListesi;
-        this.markaListesi=markaListesi;
-        this.kategoriListesi=kategoriListesi;
-    }
-     int id;
 
-     double fiyat;
-     int stok;
-     Marka marka;
-     Kategori kategori;
-     int input;
+    UrunIslem(ArrayList<Urun> urunListesi, ArrayList<Marka> markaListesi, ArrayList<Kategori> kategoriListesi) {
+        liste = urunListesi;
+        this.markaListesi = markaListesi;
+        this.kategoriListesi = kategoriListesi;
+    }
+
     public int basla() {
-        Scanner soru = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        int input;
         do {
             try {
                 System.out.println("Urun İşlemleri");
@@ -30,22 +25,15 @@ public class UrunIslem extends  CRUDIslemler<Urun>{
                 System.out.println("3-Urun Sil");
                 System.out.println("4-Urun Düzenle");
                 System.out.println("0-Geri Dön");
-                input = soru.nextInt();
-                soru.nextLine();
-
-                //scanner temizleme
+                input = scanner.nextInt();
+                scanner.nextLine(); //scanner temizleme
             } catch (Exception e) {
                 System.out.println();
                 System.out.println("Geçersiz Değer Girdiniz");
                 System.out.println("Lütfen Geçerli Bir Değer Giriniz");
                 System.out.println();
-                soru.nextLine(); //scanner temizleme
-                input = 1;
-                //do while ın çalışma şartı input un 0 olmaması bu exception durumunda
-                //input 0 kaldığı için program calısmayı kesiyor bunu engellemek için
-                //input u 0 yapmıyoruz.
+                scanner.nextLine(); //scanner temizleme
                 continue;
-
             }
             switch (input) {
                 case 1:
@@ -76,9 +64,7 @@ public class UrunIslem extends  CRUDIslemler<Urun>{
                     return 0;
             }
 
-        } while (input != 0);
-
-        return 1;
+        } while (true);
     }
 
     @Override
@@ -86,7 +72,8 @@ public class UrunIslem extends  CRUDIslemler<Urun>{
         System.out.println();
         System.out.println("Ürünler:");
         for (Urun urun : liste) {
-            System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd()+",Fiyat: "+urun.getFiyat()+",Kategori: "+urun.getKategori().getAd() +",Stok: "+urun.getStok()+",Marka: "+urun.getMarka().getAd());
+            System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
+                    ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
 
         }
         System.out.println();
@@ -95,32 +82,59 @@ public class UrunIslem extends  CRUDIslemler<Urun>{
 
     @Override
     public void olustur() {
-        /* Scanner soru = new Scanner(System.in);
-        String ad;
-        String marka;
-        System.out.println("Eklemek istediğiniz ürün ismini giriniz: ");
-        ad = soru.nextLine();
-        System.out.println("Eklemek istediğiniz ürün fiyatını giriniz: ");
-        fiyat=soru.nextInt();
-        System.out.println("Eklemek istediğiniz ürün stokunu giriniz: ");
-        stok=soru.nextInt();
-        System.out.println("Eklemek istediğiniz ürün markasını giriniz: ");
-         marka=soru.nextLine();
-        Urun urun = new Urun(ad,fiyat,stok,marka,kategori);
-        liste.add(urun);
-        System.out.println();
-        System.out.println("'" + ad + "' Ürün Eklendi");
-        System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
-        System.out.println(); */
+        Scanner scanner = new Scanner(System.in);
+        String ad, markaAd = null, kategoriAd = null;
+        double fiyat;
+        int stok, markaId, kategoriId;
+        try {
+            System.out.println("Eklemek istediğiniz ürünün ismini giriniz: ");
+            ad = scanner.nextLine();
+            System.out.println("Eklemek istediğiniz ürünün fiyatını giriniz: ");
+            fiyat = scanner.nextDouble();
+            System.out.println("Eklemek istediğiniz ürünün stok adetini giriniz: ");
+            stok = scanner.nextInt();
+            System.out.println("Eklemek istediğiniz ürünün marka idsini giriniz: ");
+            markaId = scanner.nextInt();
+            scanner.nextLine(); //scanner temizleyici
+            for (Marka marka : markaListesi) {
+                if (markaId == marka.getId()) {
+                    System.out.println("Eklemek istediğiniz ürünün kategori idsini giriniz: ");
+                    kategoriId = scanner.nextInt();
+                    scanner.nextLine(); // scanner temizleyici
+                    for (Kategori kategori : kategoriListesi) {
+                        if (kategoriId == kategori.getId()) {
+                            markaAd = marka.getAd();
+                            kategoriAd = kategori.getAd();
+                            Urun urun = new Urun(ad, fiyat, stok, marka, kategori);
+                            liste.add(urun);
+                            System.out.println();
+                            System.out.println("'" + ad + "' Ürünü " + markaAd + " Markasına ve " + kategoriAd + " Kategorisine Eklendi");
+                            System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                            System.out.println();
+                            return;
+                        }
+                    }
+                    break;
+                }
+            }
+        System.out.println("Geçersiz ID girdiniz");
+        System.out.println("İşlem iptal ediliyor");
+        }catch (Exception e){
+            System.out.println("Geçersiz Değer Girdiniz");
+            System.out.println("İşlem iptal ediliyor");
+            System.out.println();
+            scanner.nextLine(); //scanner temizleme
+        }
     }
 
     @Override
     public void sil() {
-        Scanner soru = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        int id;
         try {
             System.out.println("Silmek istediğiniz markanın idsini giriniz: ");
-            id = soru.nextInt();
-            soru.nextLine(); //scanner temizleme
+            id = scanner.nextInt();
+            scanner.nextLine(); //scanner temizleme
             for (Urun urun : liste) {
                 if (id == urun.getId()) {
                     System.out.println("'" + urun.getAd() + "' Ürünü silindi");
@@ -135,40 +149,57 @@ public class UrunIslem extends  CRUDIslemler<Urun>{
         } catch (InputMismatchException e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
-            soru.nextLine(); //scanner temizleme
+            scanner.nextLine(); //scanner temizleme
         }
     }
 
     @Override
     public void duzenle() {
-        Scanner soru = new Scanner(System.in);
-        int counter = 0;
+        Scanner scanner = new Scanner(System.in);
         String ad;
-        int input;
-        System.out.println("İsmini değiştirmek istediğiniz ürünün idsini giriniz:  ");
+        int input,markaId,kategoriId;
         try {
-            input = soru.nextInt();
-            for (Urun u : liste) {
-                if (u.getId() == input) {
-                    soru.nextLine();
+        System.out.println("Düzenlemek istediğiniz ürünün idsini giriniz:  ");
+            input = scanner.nextInt();
+            scanner.nextLine(); //scanner temizleme
+            for (Urun urun : liste) {
+                if (urun.getId() == input) {
                     System.out.println("Yeni ismi giriniz: ");
-                    u.setAd(soru.nextLine());
-                    counter++;
-                    System.out.println();
-                    System.out.println("Ürün '" + u.getAd() + "' olarak düzenlendi.");
-                    System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
-                    System.out.println();
+                    urun.setAd(scanner.nextLine());
+                   System.out.println("Yeni fiyatı giriniz: ");
+                   urun.setFiyat(scanner.nextInt());
+                   System.out.println("Yeni stok adetini giriniz: ");
+                   urun.setStok(scanner.nextInt());
+                   System.out.println("Yeni markanın idsini giriniz: ");
+                   markaId =scanner.nextInt();
+                    for (Marka marka : markaListesi) {
+                        if (markaId == marka.getId()) {
+                            urun.setMarka(marka);
+                            System.out.println("Yeni kategorinin idsini giriniz: ");
+                            kategoriId = scanner.nextInt();
+                            scanner.nextLine(); // scanner temizleyici
+                            for (Kategori kategori : kategoriListesi) {
+                                if (kategoriId == kategori.getId()) {
+                                    urun.setKategori(kategori);
+                                    System.out.println();
+                                    System.out.println("Urun '" + urun.getAd() + "' olarak düzenlendi.");
+                                    System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+                                    System.out.println();
+                                    return;
+                                }
+                            }
+                            break;
+                        }
+                    }
                 }
             }
-            if (counter == 0) {
                 System.out.println();
                 System.out.println("Geçersiz ID girdiniz.");
                 System.out.println("İşlem iptal ediliyor");
-            }
         } catch (Exception e) {
-            System.out.println("Geçersiz ID girdiniz");
+            System.out.println("Geçersiz Değer girdiniz");
             System.out.println("İşlem iptal ediliyor");
-            soru.nextLine(); //scanner temizleme
+            scanner.nextLine(); //scanner temizleme
         }
 
     }

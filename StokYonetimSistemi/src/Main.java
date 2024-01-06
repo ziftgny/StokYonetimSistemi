@@ -6,6 +6,7 @@ public class Main {
         Login login = new Login();
         login.setup();
         program.setup();
+
         int returnvalue = 0;
         System.out.println("STOK YÖNETİM SİSTEMİNE HOŞGELDİNİZ");
         //0 döndürüldüğünde sadece kayıt işlemine geri dönmek istediği anlaşılır

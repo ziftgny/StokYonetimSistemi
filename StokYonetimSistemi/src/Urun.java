@@ -7,6 +7,9 @@ public class Urun {
     private Kategori kategori;
     private static int idCounter=0;
 
+    //Her ürün türünden nesne olusturuldugunda kullanılacak ve
+    // her nesneye benzersiz bir id değeri atayacaktır.
+
     public Urun(String ad, double fiyat, int stok, Marka marka, Kategori kategori) {
         idCounter++;
         this.id=idCounter;

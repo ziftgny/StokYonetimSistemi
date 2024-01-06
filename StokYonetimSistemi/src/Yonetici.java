@@ -1,6 +1,9 @@
 public class Yonetici {
     private  int id;
     private static int idCounter=0;
+
+    //Her yönetici türünden nesne olusturuldugunda kullanılacak ve
+    // her nesneye benzersiz bir id değeri atayacaktır.
     private String kullaniciAdi;
     private String sifre;
     Yonetici(String kullaniciAdi,String sifre){
