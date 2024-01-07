@@ -72,8 +72,24 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         System.out.println();
         System.out.println("Ürünler:");
         for (Urun urun : liste) {
+            String kategoriAd;
+            String markaAd;
+            if(checkCategoryID(urun.getKategori().getId())){
+                kategoriAd=urun.getKategori().getAd();
+            }
+            else{
+                urun.setKategori(null);
+                kategoriAd="-";
+            }
+            if(checkBrandID(urun.getMarka().getId())){
+                markaAd=urun.getMarka().getAd();
+            }
+            else{
+                urun.setMarka(null);
+                markaAd="-";
+            }
             System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
-                    ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+                    ",Kategori: " + kategoriAd + ",Stok: " + urun.getStok() + ",Marka: " + markaAd);
 
         }
         System.out.println();
@@ -202,5 +218,19 @@ public class UrunIslem extends CRUDIslemler<Urun> {
             scanner.nextLine(); //scanner temizleme
         }
 
+    }
+    public boolean checkCategoryID(int id) {
+        for (Kategori i : kategoriListesi) {
+            if (id == i.getId())
+                return true;
+        }
+        return false;
+    }
+    public boolean checkBrandID(int id) {
+        for (Marka i : markaListesi) {
+            if (id == i.getId())
+                return true;
+        }
+        return false;
     }
 }
