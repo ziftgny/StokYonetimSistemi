@@ -107,7 +107,7 @@ public class UrunIslem extends CRUDIslemler<Urun> {
     public void markaFiltrele() {
         Scanner scanner = new Scanner(System.in);
         int input;
-        MarkaIslem mi = new KategoriIslem(markaListesi);
+        MarkaIslem mi = new MarkaIslem(markaListesi);
         while(true){
             try {
                 System.out.println("Filtrelemek istediğiniz kategoriyi id sine göre seçiniz");
