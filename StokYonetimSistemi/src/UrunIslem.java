@@ -111,7 +111,7 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         while (true) {
             try {
                 mi.oku();
-                System.out.println("Filtrelemek istediğiniz kategoriyi id numarasına göre seçiniz");
+                System.out.println("Filtrelemek istediğiniz markayı id numarasına göre seçiniz");
                 input = scanner.nextInt();
                 scanner.nextLine();
                 Marka marka = mi.getBrandByID(input);
