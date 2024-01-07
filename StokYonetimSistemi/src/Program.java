@@ -7,10 +7,6 @@ public class Program {
     ArrayList<Kategori> kategoriListesi = new ArrayList<>();
     ArrayList<Urun> urunListesi = new ArrayList<>();
 
-    public boolean login() {
-        return true; // bu ne la
-    }
-
     public boolean basla() {
         Scanner scanner = new Scanner(System.in);
         int input = 0;
@@ -68,29 +64,11 @@ public class Program {
                 , new Kategori("Notebook")
         );
         Collections.addAll(urunListesi
-                , new Urun("GalaxyS5", 1049.24, 54, getMarkaByID(1), getKategoriByID(1))
-                , new Urun("Apple2", 2500.24, 51, getMarkaByID(2), getKategoriByID(3))
-                , new Urun("İntel785", 5563.24, 48, getMarkaByID(3), getKategoriByID(1))
+                , new Urun("GalaxyS5", 1049.24, 54, markaListesi.get(4), kategoriListesi.get(2))
+                , new Urun("İphone", 2500.24, 51, markaListesi.get(2), kategoriListesi.get(2))
+                , new Urun("OLed", 5563.24, 48, markaListesi.get(6), kategoriListesi.get(1))
         );
 
-    }
-
-    public Marka getMarkaByID(int id) { // ????*
-        for (Marka i : markaListesi) {
-            if (id == i.getId())
-                return i;
-        }
-        System.out.println("Marka bulunamadı");
-        return null;
-    }
-
-    public Kategori getKategoriByID(int id) { //????
-        for (Kategori i : kategoriListesi) {
-            if (id == i.getId())
-                return i;
-        }
-        System.out.println("Kategori bulunamadı");
-        return null;
     }
 
 }

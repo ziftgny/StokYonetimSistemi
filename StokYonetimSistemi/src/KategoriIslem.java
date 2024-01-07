@@ -146,7 +146,7 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
 
     }
 
-    public Kategori getCategoryByID(int id) {  // ??????????
+    public Kategori getCategoryByID(int id) {
         for (Kategori i : liste) {
             if (id == i.getId())
                 return i;

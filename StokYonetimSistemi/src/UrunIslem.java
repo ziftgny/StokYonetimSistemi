@@ -84,8 +84,8 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                 System.out.println("Filtrelemek istediğiniz kategoriyi id numarasına göre seçiniz");
                 input = scanner.nextInt();
                 scanner.nextLine(); //scanner temizleyici
-                Kategori kategori = ki.getCategoryByID(input); //?????
-                if (kategori == null) { // metot void olduğu için return değeri null demi ??
+                Kategori kategori = ki.getCategoryByID(input);
+                if (kategori == null) {
                     System.out.println("Bu idye ait kategori bulunmamaktadır.");
                     continue;
                 }
@@ -136,37 +136,20 @@ public class UrunIslem extends CRUDIslemler<Urun> {
 
     public void oku(Kategori kategori) {
         for (Urun urun : liste) {
-            if (!checkCategoryID(urun.getKategori().getId())) {
-                urun.setKategori(kategoriListesi.get(0));
-            }
-            if (!checkBrandID(urun.getMarka().getId())) {
-                urun.setMarka(markaListesi.get(0));
-            }
-            if (urun.getKategori().getAd().equals(kategori.getAd())) {
+            if (urun.getKategori().getId()==kategori.getId()) {
                 System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
                         ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
-                return;
             }
         }
-        System.out.println("Bu kategoriye ait ürün bulunmamaktadır.");
     }
 
     public void oku(Marka marka) {
         for (Urun urun : liste) {
-            if (!checkCategoryID(urun.getKategori().getId())) {
-                urun.setKategori(kategoriListesi.get(0));
-            }
-            if (!checkBrandID(urun.getMarka().getId())) {
-                urun.setMarka(markaListesi.get(0));
-            }
-
-            if (urun.getMarka().getAd().equals(marka.getAd())) {
+            if (urun.getMarka().getId()==marka.getId()) {
                 System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
                         ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
-                return;
             }
         }
-        System.out.println("Bu markaya ait ürün bulunmamaktadır.");
     }
 
     @Override
