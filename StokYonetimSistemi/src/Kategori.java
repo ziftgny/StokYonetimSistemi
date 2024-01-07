@@ -6,9 +6,9 @@ public class Kategori {
     //Her kategori türünden nesne olusturuldugunda kullanılacak ve
     // her nesneye benzersiz bir id değeri atayacaktır.
     public Kategori(String ad) {
-        idCounter++;
-        id = idCounter;
         this.ad = ad;
+        id = idCounter;
+        idCounter++;
     }
 
     public int getId() {

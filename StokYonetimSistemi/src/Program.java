@@ -53,6 +53,7 @@ public class Program {
 
     public void setup() {
         Collections.addAll(markaListesi
+                , new Marka("Boş")
                 , new Marka("Toshiba")
                 , new Marka("Apple")
                 , new Marka("LG")
@@ -61,6 +62,7 @@ public class Program {
                 , new Marka("Intel")
         );
         Collections.addAll(kategoriListesi
+                , new Kategori("Boş")
                 , new Kategori("Televizyon")
                 , new Kategori("Telefon")
                 , new Kategori("Notebook")

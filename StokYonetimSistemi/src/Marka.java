@@ -8,10 +8,9 @@ public class Marka {
     // her nesneye benzersiz bir id değeri atayacaktır.
 
     public Marka(String ad) {
-        idCounter++;
-        id = idCounter;
         this.ad = ad;
-
+        id = idCounter;
+        idCounter++;
     }
 
 

@@ -72,24 +72,14 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         System.out.println();
         System.out.println("Ürünler:");
         for (Urun urun : liste) {
-            String kategoriAd;
-            String markaAd;
-            if(checkCategoryID(urun.getKategori().getId())){
-                kategoriAd=urun.getKategori().getAd();
+            if(!checkCategoryID(urun.getKategori().getId())){
+                urun.setKategori(kategoriListesi.get(0));
             }
-            else{
-                urun.setKategori(null);
-                kategoriAd="-";
-            }
-            if(checkBrandID(urun.getMarka().getId())){
-                markaAd=urun.getMarka().getAd();
-            }
-            else{
-                urun.setMarka(null);
-                markaAd="-";
+            if(!checkBrandID(urun.getMarka().getId())){
+                urun.setMarka(markaListesi.get(0));
             }
             System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
-                    ",Kategori: " + kategoriAd + ",Stok: " + urun.getStok() + ",Marka: " + markaAd);
+                    ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
 
         }
         System.out.println();
