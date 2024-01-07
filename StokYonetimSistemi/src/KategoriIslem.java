@@ -66,7 +66,6 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
 
         }
         System.out.println();
-        System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
     }
 
     @Override
@@ -140,5 +139,12 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
             scanner.nextLine(); //scanner temizleme
         }
 
+    }
+    public Kategori getCategoryByID(int id){
+        for (Kategori i:liste) {
+            if(id==i.getId())
+                return i;
+        }
+        return null;
     }
 }

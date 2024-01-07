@@ -24,6 +24,8 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                 System.out.println("2-Urun Oluştur");
                 System.out.println("3-Urun Sil");
                 System.out.println("4-Urun Düzenle");
+                System.out.println("5-Kategori Filtrele");
+                System.out.println("6-Marka Filtrele");
                 System.out.println("0-Geri Dön");
                 input = scanner.nextInt();
                 scanner.nextLine(); //scanner temizleme
@@ -53,6 +55,9 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     duzenle();
                     System.out.println();
                     break;
+                case 5:
+                    kategoriFiltrele();
+                    break;
                 default:
                     System.out.println();
                     System.out.println("Geçersiz Değer Girdiniz");
@@ -65,6 +70,64 @@ public class UrunIslem extends CRUDIslemler<Urun> {
             }
 
         } while (true);
+    }
+    public void kategoriFiltrele() {
+        Scanner scanner = new Scanner(System.in);
+        int input;
+        KategoriIslem ki = new KategoriIslem(kategoriListesi);
+        while(true){
+            try {
+                System.out.println("Filtrelemek istediğiniz kategoriyi id sine göre seçiniz");
+                ki.oku();
+                input = scanner.nextInt();
+                scanner.nextLine();
+                Kategori kategori=ki.getCategoryByID(input);
+                if(kategori==null){
+                    System.out.println("bu id de kategori yok");
+                    continue;
+                }
+                oku(kategori);
+                break;
+            }catch (Exception e) {
+                System.out.println();
+                System.out.println("Geçersiz Değer Girdiniz");
+                System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                System.out.println();
+                scanner.nextLine(); //scanner temizleme
+            }
+
+        }
+
+
+    }
+    public void markaFiltrele() {
+        Scanner scanner = new Scanner(System.in);
+        int input;
+        MarkaIslem mi = new KategoriIslem(markaListesi);
+        while(true){
+            try {
+                System.out.println("Filtrelemek istediğiniz kategoriyi id sine göre seçiniz");
+                mi.oku();
+                input = scanner.nextInt();
+                scanner.nextLine();
+                Marka marka=mi.getBrandByID(input);
+                if(marka==null){
+                    System.out.println("bu id de kategori yok");
+                    continue;
+                }
+                oku(marka);
+                break;
+            }catch (Exception e) {
+                System.out.println();
+                System.out.println("Geçersiz Değer Girdiniz");
+                System.out.println("Lütfen Geçerli Bir Değer Giriniz");
+                System.out.println();
+                scanner.nextLine(); //scanner temizleme
+            }
+
+        }
+
+
     }
 
     @Override
@@ -84,6 +147,34 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         }
         System.out.println();
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
+    }
+    public void oku(Kategori kategori){
+        for (Urun urun:liste) {
+            if(!checkCategoryID(urun.getKategori().getId())){
+                urun.setKategori(kategoriListesi.get(0));
+            }
+            if(!checkBrandID(urun.getMarka().getId())){
+                urun.setMarka(markaListesi.get(0));
+            }
+
+            if(urun.getKategori().getAd().equals(kategori.getAd()))
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
+                        ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+        }
+    }
+    public void oku(Marka marka){
+        for (Urun urun:liste) {
+            if(!checkCategoryID(urun.getKategori().getId())){
+                urun.setKategori(kategoriListesi.get(0));
+            }
+            if(!checkBrandID(urun.getMarka().getId())){
+                urun.setMarka(markaListesi.get(0));
+            }
+
+            if(urun.getMarka().getAd().equals(marka.getAd()))
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
+                        ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+        }
     }
 
     @Override

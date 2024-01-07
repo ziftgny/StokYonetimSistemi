@@ -142,6 +142,13 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
         }
 
     }
+    public Marka getBrandByID(int id){
+        for (Marka i:liste) {
+            if(id==i.getId())
+                return i;
+        }
+        return null;
+    }
 }
 
 
