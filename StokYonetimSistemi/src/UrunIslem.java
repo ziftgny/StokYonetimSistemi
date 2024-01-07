@@ -48,7 +48,6 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     break;
                 case 3:
                     sil();
-
                     System.out.println();
                     break;
                 case 4:
@@ -57,6 +56,11 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     break;
                 case 5:
                     kategoriFiltrele();
+                    System.out.println();
+                    break;
+                case 6:
+                    markaFiltrele();
+                    System.out.println();
                     break;
                 default:
                     System.out.println();
