@@ -7,7 +7,6 @@ public class Login {
     ArrayList<Yonetici> yoneticiArrayList = new ArrayList<>();
 
     public void setup() {
-        // collection ne ?
         Collections.addAll(kullaniciArrayList,
                 new Kullanici("gulsekykc", "20"),
                 new Kullanici("ziftgny", "zift2002"),
@@ -21,15 +20,15 @@ public class Login {
 
     public int basla() {
         Scanner scanner = new Scanner(System.in);
-        int secim = 0;
+        int input = 0;
         while (true) {
             try {
                 System.out.println("1-Yönetici girişi");
                 System.out.println("2-Kullanıcı girişi");
                 System.out.println("3-Çıkış");
-                secim = scanner.nextInt();
+                input = scanner.nextInt();
                 scanner.nextLine(); //reset
-                switch (secim) {
+                switch (input) {
                     case 1:
                         int counter = 0;
                         System.out.println();
@@ -46,8 +45,7 @@ public class Login {
                                     if (yoneticiIslem.basla() == 1) {
                                         return 1;
                                     }
-                                    counter++; // gerekli mi olmasa olur mu ?
-                                    // gerekli değilse counteri sil if kaldır
+                                    counter++;
                                 }
                             }
                         }

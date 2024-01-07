@@ -68,7 +68,6 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
 
         }
         System.out.println();
-        System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
     }
 
     @Override
@@ -88,17 +87,17 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
     @Override
     public void sil() {
         Scanner scanner = new Scanner(System.in);
-        int id;
+        int input;
         try {
             System.out.println("Silmek istediğiniz markanın idsini giriniz: ");
-            id = scanner.nextInt();
+            input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
-            if(id==0){
-                System.out.println("0. eleman silinemez");
+            if (input == 0) {
+                System.out.println("Boş Marka Silinemez");
                 return;
             }
             for (Marka marka : liste) {
-                if (id == marka.getId()) {
+                if (input == marka.getId()) {
                     System.out.println("'" + marka.getAd() + "' Markası silindi");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
@@ -118,31 +117,29 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
     @Override
     public void duzenle() {
         Scanner scanner = new Scanner(System.in);
-        int counter = 0, input;
+        int input;
         try {
             System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
             input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
-            if(input==0){
-                System.out.println("0. eleman düzenlenemez");
+            if (input == 0) {
+                System.out.println("Boş Kategori Düzenlenemez");
                 return;
             }
             for (Marka marka : liste) {
                 if (marka.getId() == input) {
-                    counter++;
                     System.out.println("Yeni ismi giriniz: ");
                     marka.setAd(scanner.nextLine());
                     System.out.println();
                     System.out.println("Marka '" + marka.getAd() + "' olarak düzenlendi.");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
+                    return;
                 }
             }
-            if (counter == 0) {
-                System.out.println();
-                System.out.println("Geçersiz ID girdiniz.");
-                System.out.println("İşlem iptal ediliyor");
-            }
+            System.out.println();
+            System.out.println("Geçersiz ID girdiniz.");
+            System.out.println("İşlem iptal ediliyor");
         } catch (Exception e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
@@ -150,9 +147,10 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
         }
 
     }
-    public Marka getBrandByID(int id){
-        for (Marka i:liste) {
-            if(id==i.getId())
+
+    public Marka getBrandByID(int id) { //????*
+        for (Marka i : liste) {
+            if (id == i.getId())
                 return i;
         }
         return null;

@@ -75,7 +75,7 @@ public class Program {
 
     }
 
-    public Marka getMarkaByID(int id) {
+    public Marka getMarkaByID(int id) { // ????*
         for (Marka i : markaListesi) {
             if (id == i.getId())
                 return i;
@@ -84,7 +84,7 @@ public class Program {
         return null;
     }
 
-    public Kategori getKategoriByID(int id) {
+    public Kategori getKategoriByID(int id) { //????
         for (Kategori i : kategoriListesi) {
             if (id == i.getId())
                 return i;

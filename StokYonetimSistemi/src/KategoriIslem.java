@@ -85,23 +85,22 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
     @Override
     public void sil() {
         Scanner scanner = new Scanner(System.in);
-        int id;
+        int input;
         try {
             System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
-            id = scanner.nextInt();
+            input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
-            if(id==0){
-                System.out.println("0. eleman silinemez");
+            if (input == 0) {
+                System.out.println("Boş Kategori Silinemez");
                 return;
             }
             for (Kategori kategori : liste) {
-                if (id == kategori.getId()) {
+                if (input == kategori.getId()) {
                     System.out.println("'" + kategori.getAd() + "' Kategorisi silindi");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
                     liste.remove(kategori);
                     return;
-                    // Silme işlemi bitince sil() metoduna devam etmesin diye return ile metodu sonlandırıyoruz
                 }
             }
             System.out.println("Geçersiz ID girdiniz");
@@ -116,31 +115,29 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
     @Override
     public void duzenle() {
         Scanner scanner = new Scanner(System.in);
-        int counter = 0, input;
+        int input;
         try {
             System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
             input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
-            if(input==0){
-                System.out.println("0. eleman düzenlenemez");
+            if (input == 0) {
+                System.out.println("Boş Kategori Düzenlenemez");
                 return;
             }
             for (Kategori kategori : liste) {
                 if (kategori.getId() == input) {
-                    counter++;
                     System.out.println("Yeni ismi giriniz: ");
                     kategori.setAd(scanner.nextLine());
                     System.out.println();
                     System.out.println("Kategori '" + kategori.getAd() + "' olarak düzenlendi.");
                     System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
                     System.out.println();
+                    return;
                 }
             }
-            if (counter == 0) {
-                System.out.println();
-                System.out.println("Geçersiz ID girdiniz.");
-                System.out.println("İşlem iptal ediliyor");
-            }
+            System.out.println();
+            System.out.println("Geçersiz ID girdiniz.");
+            System.out.println("İşlem iptal ediliyor");
         } catch (Exception e) {
             System.out.println("Geçersiz ID girdiniz");
             System.out.println("İşlem iptal ediliyor");
@@ -148,9 +145,10 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
         }
 
     }
-    public Kategori getCategoryByID(int id){
-        for (Kategori i:liste) {
-            if(id==i.getId())
+
+    public Kategori getCategoryByID(int id) {  // ??????????
+        for (Kategori i : liste) {
+            if (id == i.getId())
                 return i;
         }
         return null;

@@ -66,33 +66,32 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     System.out.println();
                     System.out.println("Geçersiz Değer Girdiniz");
                     System.out.println("Lütfen Geçerli Bir Değer Giriniz");
-
                     System.out.println();
                     break;
                 case 0:
                     return 0;
             }
-
         } while (true);
     }
+
     public void kategoriFiltrele() {
         Scanner scanner = new Scanner(System.in);
         int input;
         KategoriIslem ki = new KategoriIslem(kategoriListesi);
-        while(true){
+        while (true) {
             try {
-                System.out.println("Filtrelemek istediğiniz kategoriyi id sine göre seçiniz");
                 ki.oku();
+                System.out.println("Filtrelemek istediğiniz kategoriyi id numarasına göre seçiniz");
                 input = scanner.nextInt();
-                scanner.nextLine();
-                Kategori kategori=ki.getCategoryByID(input);
-                if(kategori==null){
-                    System.out.println("bu id de kategori yok");
+                scanner.nextLine(); //scanner temizleyici
+                Kategori kategori = ki.getCategoryByID(input); //?????
+                if (kategori == null) { // metot void olduğu için return değeri null demi ??
+                    System.out.println("Bu idye ait kategori bulunmamaktadır.");
                     continue;
                 }
                 oku(kategori);
                 break;
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println();
                 System.out.println("Geçersiz Değer Girdiniz");
                 System.out.println("Lütfen Geçerli Bir Değer Giriniz");
@@ -104,24 +103,25 @@ public class UrunIslem extends CRUDIslemler<Urun> {
 
 
     }
+
     public void markaFiltrele() {
         Scanner scanner = new Scanner(System.in);
         int input;
         MarkaIslem mi = new MarkaIslem(markaListesi);
-        while(true){
+        while (true) {
             try {
-                System.out.println("Filtrelemek istediğiniz kategoriyi id sine göre seçiniz");
                 mi.oku();
+                System.out.println("Filtrelemek istediğiniz kategoriyi id numarasına göre seçiniz");
                 input = scanner.nextInt();
                 scanner.nextLine();
-                Marka marka=mi.getBrandByID(input);
-                if(marka==null){
-                    System.out.println("bu id de kategori yok");
+                Marka marka = mi.getBrandByID(input);
+                if (marka == null) {
+                    System.out.println("Bu idye ait marka bulunmamaktadır.");
                     continue;
                 }
                 oku(marka);
                 break;
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println();
                 System.out.println("Geçersiz Değer Girdiniz");
                 System.out.println("Lütfen Geçerli Bir Değer Giriniz");
@@ -132,6 +132,41 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         }
 
 
+    }
+
+    public void oku(Kategori kategori) {
+        for (Urun urun : liste) {
+            if (!checkCategoryID(urun.getKategori().getId())) {
+                urun.setKategori(kategoriListesi.get(0));
+            }
+            if (!checkBrandID(urun.getMarka().getId())) {
+                urun.setMarka(markaListesi.get(0));
+            }
+            if (urun.getKategori().getAd().equals(kategori.getAd())) {
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
+                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
+                return;
+            }
+        }
+        System.out.println("Bu kategoriye ait ürün bulunmamaktadır.");
+    }
+
+    public void oku(Marka marka) {
+        for (Urun urun : liste) {
+            if (!checkCategoryID(urun.getKategori().getId())) {
+                urun.setKategori(kategoriListesi.get(0));
+            }
+            if (!checkBrandID(urun.getMarka().getId())) {
+                urun.setMarka(markaListesi.get(0));
+            }
+
+            if (urun.getMarka().getAd().equals(marka.getAd())) {
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
+                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
+                return;
+            }
+        }
+        System.out.println("Bu markaya ait ürün bulunmamaktadır.");
     }
 
     @Override
@@ -139,10 +174,10 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         System.out.println();
         System.out.println("Ürünler:");
         for (Urun urun : liste) {
-            if(!checkCategoryID(urun.getKategori().getId())){
+            if (!checkCategoryID(urun.getKategori().getId())) {
                 urun.setKategori(kategoriListesi.get(0));
             }
-            if(!checkBrandID(urun.getMarka().getId())){
+            if (!checkBrandID(urun.getMarka().getId())) {
                 urun.setMarka(markaListesi.get(0));
             }
             System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
@@ -151,34 +186,6 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         }
         System.out.println();
         System.out.println("Bir Önceki Menüye Yönlendiriliyorsunuz.");
-    }
-    public void oku(Kategori kategori){
-        for (Urun urun:liste) {
-            if(!checkCategoryID(urun.getKategori().getId())){
-                urun.setKategori(kategoriListesi.get(0));
-            }
-            if(!checkBrandID(urun.getMarka().getId())){
-                urun.setMarka(markaListesi.get(0));
-            }
-
-            if(urun.getKategori().getAd().equals(kategori.getAd()))
-                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
-                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
-        }
-    }
-    public void oku(Marka marka){
-        for (Urun urun:liste) {
-            if(!checkCategoryID(urun.getKategori().getId())){
-                urun.setKategori(kategoriListesi.get(0));
-            }
-            if(!checkBrandID(urun.getMarka().getId())){
-                urun.setMarka(markaListesi.get(0));
-            }
-
-            if(urun.getMarka().getAd().equals(marka.getAd()))
-                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
-                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
-        }
     }
 
     @Override
@@ -218,9 +225,9 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     break;
                 }
             }
-        System.out.println("Geçersiz ID girdiniz");
-        System.out.println("İşlem iptal ediliyor");
-        }catch (Exception e){
+            System.out.println("Geçersiz ID girdiniz");
+            System.out.println("İşlem iptal ediliyor");
+        } catch (Exception e) {
             System.out.println("Geçersiz Değer Girdiniz");
             System.out.println("İşlem iptal ediliyor");
             System.out.println();
@@ -258,21 +265,21 @@ public class UrunIslem extends CRUDIslemler<Urun> {
     public void duzenle() {
         Scanner scanner = new Scanner(System.in);
         String ad;
-        int input,markaId,kategoriId;
+        int input, markaId, kategoriId;
         try {
-        System.out.println("Düzenlemek istediğiniz ürünün idsini giriniz:  ");
+            System.out.println("Düzenlemek istediğiniz ürünün idsini giriniz:  ");
             input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
             for (Urun urun : liste) {
                 if (urun.getId() == input) {
                     System.out.println("Yeni ismi giriniz: ");
                     urun.setAd(scanner.nextLine());
-                   System.out.println("Yeni fiyatı giriniz: ");
-                   urun.setFiyat(scanner.nextInt());
-                   System.out.println("Yeni stok adetini giriniz: ");
-                   urun.setStok(scanner.nextInt());
-                   System.out.println("Yeni markanın idsini giriniz: ");
-                   markaId =scanner.nextInt();
+                    System.out.println("Yeni fiyatı giriniz: ");
+                    urun.setFiyat(scanner.nextInt());
+                    System.out.println("Yeni stok adetini giriniz: ");
+                    urun.setStok(scanner.nextInt());
+                    System.out.println("Yeni markanın idsini giriniz: ");
+                    markaId = scanner.nextInt();
                     for (Marka marka : markaListesi) {
                         if (markaId == marka.getId()) {
                             urun.setMarka(marka);
@@ -294,9 +301,9 @@ public class UrunIslem extends CRUDIslemler<Urun> {
                     }
                 }
             }
-                System.out.println();
-                System.out.println("Geçersiz ID girdiniz.");
-                System.out.println("İşlem iptal ediliyor");
+            System.out.println();
+            System.out.println("Geçersiz ID girdiniz.");
+            System.out.println("İşlem iptal ediliyor");
         } catch (Exception e) {
             System.out.println("Geçersiz Değer girdiniz");
             System.out.println("İşlem iptal ediliyor");
@@ -304,6 +311,7 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         }
 
     }
+
     public boolean checkCategoryID(int id) {
         for (Kategori i : kategoriListesi) {
             if (id == i.getId())
@@ -311,6 +319,7 @@ public class UrunIslem extends CRUDIslemler<Urun> {
         }
         return false;
     }
+
     public boolean checkBrandID(int id) {
         for (Marka i : markaListesi) {
             if (id == i.getId())

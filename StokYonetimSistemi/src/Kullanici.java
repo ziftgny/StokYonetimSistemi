@@ -1,17 +1,19 @@
 public class Kullanici {
-    private  int id;
-    private static int idCounter=0;
+    private int id;
+    private static int idCounter = 0;
 
     //Her kullanıcı türünden nesne olusturuldugunda kullanılacak ve
     // her nesneye benzersiz bir id değeri atayacaktır.
     private String kullaniciAdi;
     private String sifre;
-Kullanici(String kullaniciAdi,String sifre){
-    this.kullaniciAdi=kullaniciAdi;
-    this.sifre=sifre;
-    idCounter++;
-    id=idCounter;
-}
+
+    Kullanici(String kullaniciAdi, String sifre) {
+        this.kullaniciAdi = kullaniciAdi;
+        this.sifre = sifre;
+        idCounter++;
+        id = idCounter;
+    }
+
     public int getId() {
         return id;
     }
