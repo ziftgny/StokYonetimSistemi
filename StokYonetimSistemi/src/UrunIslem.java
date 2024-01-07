@@ -145,8 +145,8 @@ public class UrunIslem extends CRUDIslemler<Urun> {
             if(!checkBrandID(urun.getMarka().getId())){
                 urun.setMarka(markaListesi.get(0));
             }
-            System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
-                    ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+            System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
+                    ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
 
         }
         System.out.println();
@@ -162,8 +162,8 @@ public class UrunIslem extends CRUDIslemler<Urun> {
             }
 
             if(urun.getKategori().getAd().equals(kategori.getAd()))
-                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
-                        ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
+                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
         }
     }
     public void oku(Marka marka){
@@ -176,8 +176,8 @@ public class UrunIslem extends CRUDIslemler<Urun> {
             }
 
             if(urun.getMarka().getAd().equals(marka.getAd()))
-                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",Fiyat: " + urun.getFiyat() +
-                        ",Kategori: " + urun.getKategori().getAd() + ",Stok: " + urun.getStok() + ",Marka: " + urun.getMarka().getAd());
+                System.out.println("ID: " + urun.getId() + ", Ad: " + urun.getAd() + ",  Fiyat: " + urun.getFiyat() +
+                        ",  Kategori: " + urun.getKategori().getAd() + ",  Stok: " + urun.getStok() + ",  Marka: " + urun.getMarka().getAd());
         }
     }
 

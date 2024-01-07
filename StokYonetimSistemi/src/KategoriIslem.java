@@ -90,6 +90,10 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
             System.out.println("Silmek istediğiniz kategorinin idsini giriniz: ");
             id = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
+            if(id==0){
+                System.out.println("0. eleman silinemez");
+                return;
+            }
             for (Kategori kategori : liste) {
                 if (id == kategori.getId()) {
                     System.out.println("'" + kategori.getAd() + "' Kategorisi silindi");
@@ -117,6 +121,10 @@ public class KategoriIslem extends CRUDIslemler<Kategori> {
             System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
             input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
+            if(input==0){
+                System.out.println("0. eleman düzenlenemez");
+                return;
+            }
             for (Kategori kategori : liste) {
                 if (kategori.getId() == input) {
                     counter++;

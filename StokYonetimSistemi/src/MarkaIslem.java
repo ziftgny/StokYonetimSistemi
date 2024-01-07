@@ -93,6 +93,10 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
             System.out.println("Silmek istediğiniz markanın idsini giriniz: ");
             id = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
+            if(id==0){
+                System.out.println("0. eleman silinemez");
+                return;
+            }
             for (Marka marka : liste) {
                 if (id == marka.getId()) {
                     System.out.println("'" + marka.getAd() + "' Markası silindi");
@@ -119,6 +123,10 @@ public class MarkaIslem extends CRUDIslemler<Marka> {
             System.out.println("İsmini değiştirmek istediğiniz kategorinin idsini giriniz:  ");
             input = scanner.nextInt();
             scanner.nextLine(); //scanner temizleme
+            if(input==0){
+                System.out.println("0. eleman düzenlenemez");
+                return;
+            }
             for (Marka marka : liste) {
                 if (marka.getId() == input) {
                     counter++;
