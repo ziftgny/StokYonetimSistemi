@@ -1,5 +1,5 @@
 public class Kategori {
-    private int id;
+    private final int id;
     private String ad;
     private static int idCounter = 0;
 
@@ -13,10 +13,6 @@ public class Kategori {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAd() {

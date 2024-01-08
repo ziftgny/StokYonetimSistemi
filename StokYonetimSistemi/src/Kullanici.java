@@ -1,5 +1,5 @@
 public class Kullanici {
-    private int id;
+    private final int id;
     private static int idCounter = 0;
 
     //Her kullanıcı türünden nesne olusturuldugunda kullanılacak ve
@@ -16,10 +16,6 @@ public class Kullanici {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getKullaniciAdi() {

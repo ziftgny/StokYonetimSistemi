@@ -1,5 +1,5 @@
 public class Urun {
-    private int id;
+    private final int id;
     private String ad;
     private double fiyat;
     private int stok;
@@ -23,10 +23,6 @@ public class Urun {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAd() {

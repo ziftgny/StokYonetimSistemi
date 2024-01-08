@@ -1,5 +1,5 @@
 public class Yonetici {
-    private  int id;
+    private final int id;
     private static int idCounter=0;
 
     //Her yönetici türünden nesne olusturuldugunda kullanılacak ve
@@ -14,10 +14,6 @@ public class Yonetici {
     }
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getKullaniciAdi() {
